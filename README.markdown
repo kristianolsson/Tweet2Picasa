@@ -1,7 +1,8 @@
 Tweet2Picasa
 ============
 
-Tweet2Picasa is a script that posts tweets with Twitpic images to Picasa
+Tweet2Picasa is a script that posts tweets containing Twitpic images to Picasa.
+Run ./tweet2picasa.py -h for list of commands.
 
 Requirements
 ============
@@ -13,9 +14,4 @@ Limitations
 ===========
 
 * Only public Twitter timelines
-* Max 200 tweets back
-
-TODO
-====
-
-* Search based on start and end-date
+* Max 200 tweets back in time
