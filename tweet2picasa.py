@@ -52,18 +52,20 @@ def main():
 	for s in statuses:
 		tweetdate = datetime.datetime.fromtimestamp(time.mktime(email.utils.parsedate(s.created_at)))
 		if (startdate < tweetdate and tweetdate < enddate):
-			m = re.match("(.*)http://twitddpic.com/([\d\w]+).*", s.text)
+			m = re.match("(.*)http://twitpic.com/([\d\w]+)(.*)", s.text)
 			if m != None:
-				url = "http://twitpic.com/show/large/" + m.group(2)
+				picname = m.group(2)
+				url = "http://twitpic.com/show/large/" + picname
 				opener1 = urllib2.build_opener()
 				page1 = opener1.open(url)
 				my_picture = page1.read()
-				filename = ".tweet2picasa_" + m.group(2) + ".jpg"
+				filename = ".tweet2picasa_" + picname + ".jpg"
 				fout = open(filename, "wb")
 				fout.write(my_picture)
 				fout.close()
-				
-				pu.upload_image(filename, m.group(1))
+				text = m.group(1) + m.group(3)
+				print "Upload '" + picname + "' from " + tweetdate + " with text: " + text
+				pu.upload_image(filename, text)
 				os.remove(filename)
 
 if __name__ == '__main__': main()
