@@ -63,7 +63,7 @@ def main():
 				fout.close()
 				text = m.group(1) + m.group(3)
 				pu.upload_image(filename, text)
-				os.remove(filename)
+				#os.remove(filename)
 				print "Uploaded '" + picname + "' from " + s.created_at + " with text: " + text
 
 if __name__ == '__main__': main()
