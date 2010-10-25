@@ -56,16 +56,14 @@ def main():
 			if m != None:
 				picname = m.group(2)
 				url = "http://twitpic.com/show/large/" + picname
-				opener1 = urllib2.build_opener()
-				page1 = opener1.open(url)
-				my_picture = page1.read()
+				my_picture = urllib2.build_opener().open(url).read()
 				filename = ".tweet2picasa_" + picname + ".jpg"
 				fout = open(filename, "wb")
 				fout.write(my_picture)
 				fout.close()
 				text = m.group(1) + m.group(3)
-				print "Upload '" + picname + "' from " + tweetdate + " with text: " + text
 				pu.upload_image(filename, text)
 				os.remove(filename)
+				print "Uploaded '" + picname + "' from " + s.created_at + " with text: " + text
 
 if __name__ == '__main__': main()
